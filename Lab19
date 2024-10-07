@@ -1,0 +1,119 @@
+// COMSC 210 | lab 19 | Luigi Santos
+
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <iomanip>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+struct ReviewNode {
+    float rating;
+    string comment;
+    ReviewNode* next;
+};
+
+class Movie {
+private:
+    string title;
+    ReviewNode* head;
+
+public:
+    Movie(const string& movieTitle) : title(movieTitle), head(nullptr) {}
+
+    void addReview(float rating, const string& comment) {
+        ReviewNode* newNode = new ReviewNode{rating, comment, head};
+        head = newNode;
+    }
+
+    void displayReviews() const {
+        ReviewNode* current = head;
+        float totalRating = 0;
+        int count = 0;
+
+        cout << "Movie: " << title << endl;
+
+        while (current != nullptr) {
+            count++;
+            cout << "    > Review #" << count << ": " << fixed << setprecision(1) << current->rating 
+                 << " - " << current->comment << endl;
+            totalRating += current->rating;
+            current = current->next;
+        }
+
+        if (count > 0) {
+            cout << "    > Average rating: " << fixed << setprecision(2) << (totalRating / count) << endl;
+        } else {
+            cout << "    > No reviews available." << endl;
+        }
+    }
+
+    ~Movie() {
+        ReviewNode* current = head;
+        while (current != nullptr) {
+            ReviewNode* toDelete = current;
+            current = current->next;
+            delete toDelete;
+        }
+    }
+};
+
+float generateRandomRating() {
+    return static_cast<float>(rand() % 41 + 10) / 10.0f;
+}
+
+vector<string> readCommentsFromFile(const string& filename) {
+    ifstream file(filename);
+    vector<string> comments;
+    string line;
+
+    if (file.is_open()) {
+        while (getline(file, line)) {
+            comments.push_back(line);
+        }
+        file.close();
+    } else {
+        cerr << "Error: Could not open file " << filename << endl;
+    }
+
+    return comments;
+}
+
+int main() {
+    srand(static_cast<unsigned int>(time(0)));
+
+    vector<string> comments = readCommentsFromFile("reviews.txt");
+    
+    if (comments.empty()) {
+        cout << "No reviews to process." << endl;
+        return 1;
+    }
+
+    vector<Movie> movies;
+    movies.emplace_back("Inception");
+    movies.emplace_back("Interstellar");
+
+    for (int i = 0; i < 2; ++i) {
+        float rating = generateRandomRating();
+        if (i < comments.size()) {
+            movies[0].addReview(rating, comments[i]);
+        }
+    }
+
+    for (int i = 2; i < 4; ++i) {
+        float rating = generateRandomRating();
+        if (i < comments.size()) {
+            movies[1].addReview(rating, comments[i]);
+        }
+    }
+
+    for (const auto& movie : movies) {
+        movie.displayReviews();
+        cout << endl;
+    }
+
+    return 0;
+}
