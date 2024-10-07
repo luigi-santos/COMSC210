@@ -1,0 +1,110 @@
+// COMSC 210 | lab 18 | Luigi Santos
+
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+struct ReviewNode {
+    float rating;
+    string comments;
+    ReviewNode* next;
+};
+
+class ReviewList {
+private:
+    ReviewNode* head;
+    ReviewNode* tail;
+
+public:
+    ReviewList() : head(nullptr), tail(nullptr) {}
+
+    // Function to add a review at the head
+    void addAtHead(float rating, const string& comments) {
+        ReviewNode* newNode = new ReviewNode{rating, comments, head};
+        head = newNode;
+        if (tail == nullptr) {
+            tail = head; // If this is the first node, set tail to head
+        }
+    }
+
+    // Function to add a review at the tail
+    void addAtTail(float rating, const string& comments) {
+        ReviewNode* newNode = new ReviewNode{rating, comments, nullptr};
+        if (tail) {
+            tail->next = newNode; // Link the new node at the end of the list
+        } else {
+            head = newNode; // If list is empty, set head to new node
+        }
+        tail = newNode; // Update tail to point to the new node
+    }
+
+    // Function to output all reviews and calculate average
+    void outputReviews() {
+        ReviewNode* current = head;
+        float totalRating = 0;
+        int count = 0;
+
+        cout << "Outputting all reviews:" << endl;
+
+        while (current != nullptr) {
+            count++;
+            cout << "    > Review #" << count << ": " << current->rating << ": " << current->comments << endl;
+            totalRating += current->rating;
+            current = current->next;
+        }
+
+        if (count > 0) {
+            cout << "    > Average: " << fixed << setprecision(5) << (totalRating / count) << endl;
+        } else {
+            cout << "    > No reviews available." << endl;
+        }
+    }
+
+    // Destructor to free memory
+    ~ReviewList() {
+        ReviewNode* current = head;
+        while (current != nullptr) {
+            ReviewNode* toDelete = current;
+            current = current->next;
+            delete toDelete;
+        }
+    }
+};
+
+int main() {
+    ReviewList reviews;
+    int choice;
+
+    cout << "Which linked list method should we use?" << endl;
+    cout << "    [1] New nodes are added at the head of the linked list" << endl;
+    cout << "    [2] New nodes are added at the tail of the linked list" << endl;
+    cout << "    Choice: ";
+    cin >> choice;
+
+    char another;
+    do {
+        float rating;
+        string comments;
+
+        cout << "Enter review rating 0-5: ";
+        cin >> rating;
+        cin.ignore(); // Ignore newline character left in the buffer
+        cout << "Enter review comments: ";
+        getline(cin, comments);
+
+        if (choice == 1) {
+            reviews.addAtHead(rating, comments);
+        } else {
+            reviews.addAtTail(rating, comments);
+        }
+
+        cout << "Enter another review? Y/N: ";
+        cin >> another;
+
+    } while (another == 'y' || another == 'Y');
+
+    reviews.outputReviews();
+
+    return 0;
+}
