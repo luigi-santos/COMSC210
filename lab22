@@ -1,19 +1,14 @@
 #include <iostream>
 using namespace std;
 
-const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
-
 class DoublyLinkedList {
 private:
     struct Node {
         int data;
         Node* prev;
         Node* next;
-        Node(int val, Node* p = nullptr, Node* n = nullptr) {
-            data = val; 
-            prev = p;
-            next = n;
-        }
+        Node(int val, Node* p = nullptr, Node* n = nullptr) 
+            : data(val), prev(p), next(n){}
     };
 
     Node* head;
@@ -21,7 +16,7 @@ private:
 
 public:
     // constructor
-    DoublyLinkedList() { head = nullptr; tail = nullptr; }
+    DoublyLinkedList() : head(nullptr), tail(nullptr) {}
 
     void push_back(int value) {
         Node* newNode = new Node(value);
@@ -85,7 +80,7 @@ public:
         if (head) head->prev = nullptr;
         else tail = nullptr;
         delete temp;
-
+    }
     void pop_back() {
         if (!tail) {
             cout << "List is empty" << endl;
@@ -157,20 +152,32 @@ public:
 // Driver program
 int main() {
     DoublyLinkedList list;
-    int size = rand() % (MAX_LS-MIN_LS+1) + MIN_LS;
 
-    for (int i = 0; i < size; ++i)
-        list.push_back(rand() % (MAX_NR-MIN_NR+1) + MIN_NR);
-    cout << "List forward: ";
+
+    list.push_back(10);
+    list.push_back(20);
+    list.push_back(30);
+    list.push_front(5);
+    list.push_front(1);
+
+    cout << "List after adding elements: ";
     list.print();
 
-    cout << "List backward: ";
-    list.print_reverse();
+    list.delete_pos(2);
+    cout << "List after deleting position 2: ";
+    list.print();
 
-    cout << "Deleting list, then trying to print.\n";
-    list.~DoublyLinkedList();
-    cout << "List forward: ";
+    list.pop_front();
+    cout << "List after popping front: ";
+    list.print();
+
+    list.pop_back();
+    cout << "List after popping back: ";
+    list.print();
+
+    list.delete_val(20);
+    cout << "List after deleting value 20: ";
     list.print();
 
     return 0;
-}
+} 
