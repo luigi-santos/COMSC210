@@ -2,7 +2,7 @@
 using namespace std;
 
 const int NAME_COUNT = 15;
-cont int COLOR_COUNT = 15;
+const int COLOR_COUNT = 15;
 
 class Goat {
 private:
@@ -22,7 +22,7 @@ public:
 
     Goat (int a, string n, string c) : age(a), name(n), color(c) {}
 
-    void print() cont {
+    void print() const {
         cout << name << " (" << color << ", " << age << ")";
     }
 };
@@ -33,7 +33,7 @@ string Goat::names[NAME_COUNT] = {
     "Misty", "Whisper", "Tilly", "Lilly", "Fluffy"
 };
 
-string Goat::colors[COLOR_COUNT] =}
+string Goat::colors[COLOR_COUNT] = {
     "Brown", "White", "Black", "Gray", "Spotted", 
     "Golden", "Cream", "Chestnut", "Mauve", "Yellow", 
     "Red", "Pink", "Purple", "Blue", "Green"
