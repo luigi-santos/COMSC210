@@ -12,6 +12,7 @@ private:
     static string names[NAME_COUNT];
     static string colors[COLOR_COUNT];
 
+
 public:
     Goat() {
         age = rand() % 20 + 1;
@@ -24,6 +25,18 @@ public:
     void print() cont {
         cout << name << " (" << color << ", " << age << ")";
     }
+};
+
+string Goat::names[NAME_COUNT] = {
+    "Bobby", "Daisy", "Nanny", "Billy", "Luna", 
+    "Goaty", "Clover", "Shadow", "Pumpkin", "Ginger", 
+    "Misty", "Whisper", "Tilly", "Lilly", "Fluffy"
+};
+
+string Goat::colors[COLOR_COUNT] =}
+    "Brown", "White", "Black", "Gray", "Spotted", 
+    "Golden", "Cream", "Chestnut", "Mauve", "Yellow", 
+    "Red", "Pink", "Purple", "Blue", "Green"
 };
 
 class DoublyLinkedList {
