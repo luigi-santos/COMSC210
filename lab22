@@ -45,15 +45,9 @@ public:
         }
     }
 
-    void insert_after(int value, int position) {
+    void delete_pos(int position) {
         if (position < 0) {
             cout << "Position must be >= 0." << endl;
-            return;
-        }
-
-        Node* newNode = new Node(value);
-        if (!head) {
-            head = tail = newNode;
             return;
         }
 
@@ -63,27 +57,8 @@ public:
 
         if (!temp) {
             cout << "Position exceeds list size. Node not inserted.\n";
-            delete newNode;
             return;
         }
-
-        newNode->next = temp->next;
-        newNode->prev = temp;
-        if (temp->next)
-            temp->next->prev = newNode;
-        else
-            tail = newNode; // Inserting at the end
-        temp->next = newNode;
-    }
-
-    void delete_node(int value) {
-        if (!head) return; // Empty list
-
-        Node* temp = head;
-        while (temp && temp->data != value)
-            temp = temp->next;
-
-        if (!temp) return; // Value not found
 
         if (temp->prev) {
             temp->prev->next = temp->next;
