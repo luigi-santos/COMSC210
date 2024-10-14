@@ -12,6 +12,19 @@ private:
     static string names[NAME_COUNT];
     static string colors[COLOR_COUNT];
 
+public:
+    Goat() {
+        age = rand() % 20 + 1;
+        name = names[rand() % NAME_COUNT];
+        color = colors [rand() % COLOR_COUNT];
+    }
+
+    Goat (int a, string n, string c) : age(a), name(n), color(c) {}
+
+    void print() cont {
+        cout << name << " (" << color << ", " << age << ")";
+    }
+};
 
 class DoublyLinkedList {
 private:
