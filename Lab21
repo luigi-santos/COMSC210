@@ -1,7 +1,17 @@
 #include <iostream>
 using namespace std;
 
-const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
+const int NAME_COUNT = 15;
+cont int COLOR_COUNT = 15;
+
+class Goat {
+private:
+    int age;
+    string name;
+    string color;
+    static string names[NAME_COUNT];
+    static string colors[COLOR_COUNT];
+
 
 class DoublyLinkedList {
 private:
