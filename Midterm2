@@ -24,7 +24,10 @@ private:
     Node* tail;
 
 public:
-    DoublyLinkedList() { head = nullptr; tail = nullptr; }
+    DoublyLinkedList() { 
+        head = nullptr; 
+        tail = nullptr; 
+    }
 
     void push_back(const string& value) {
         Node* newNode = new Node(value);
@@ -76,11 +79,13 @@ public:
 
     string front() const {
          return head ? head ->data : "";
+    }
 
     string back() const {
         return tail ? tail->data : "";
+    }
 
-     void print() {
+     void print() const {
         Node* current = head;
         if (!current) {
             cout << "List is empty." << endl;
@@ -124,7 +129,7 @@ int main() {
     }
 
     for (int time_period = 1; time_period <= 20; ++time_period) {
-        cout << "Time step #" << time_ period << ":" << endl;
+        cout << "Time step #" << time_period << ":" << endl;
 
         if (!line.is_empty() && (rand() % 100 < 40)) {
             string customer = names.front();
@@ -142,15 +147,7 @@ int main() {
 
         if (!line.is_empty() && (rand() % 100 < 20)) {
             cout << "   " << line.back() << " (at the rear) left the line" << endl;
-            line.pop_back;
-        }
-
-        for (DoublyLinkedList::Node* current = line.front(); current; current = current ->next) {
-            if (rand() % 100 < 10) {
-                cout << "   " << current->data << " left the line" << endl;
-                line.remove(current);
-                break;
-            }
+            line.pop_back();
         }
 
         if (!names.is_empty() && (rand() % 100 < 10)) {
