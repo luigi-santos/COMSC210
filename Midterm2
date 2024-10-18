@@ -126,11 +126,38 @@ int main() {
     for (int time_period = 1; time_period <= 20; ++time_period) {
         cout << "Time step #" << time_ period << ":" << endl;
 
-        if (!line.is_empty() && (rand() % 100 < 60)) {
+        if (!line.is_empty() && (rand() % 100 < 40)) {
             string customer = names.front();
             line.push_back(customer);
             cout << "   " << customer << " joined the line" << endl;
             names.pop_front();
-    
+        }
+
+        if (!names.is_empty() && (rand() % 100 < 60)) {
+            string customer = names.front();
+            line.push_back(customer);
+            cout << "   " << customer << " joined the line" << endl;
+            names.pop_front();
+        }
+
+        if (!line.is_empty() && (rand() % 100 < 20)) {
+            cout << "   " << line.back() << " (at the rear) left the line" << endl;
+            line.pop_back;
+        }
+
+        for (DoublyLinkedList::Node* current = line.front(); current; current = current ->next) {
+            if (rand() % 100 < 10) {
+                cout << "   " << current->data << " left the line" << endl;
+                line.remove(current);
+                break;
+            }
+        }
+
+        if (!names.is_empty() && (rand() % 100 < 10)) {
+            string customer = names.front();
+            cout <<  "   " << customer << " (VIP) joins the front of the line" << endl;
+            line.push_back(customer);
+            names.pop_front();
+        }
     return 0;
 }
