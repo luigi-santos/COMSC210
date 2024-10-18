@@ -78,7 +78,7 @@ public:
     }
 
     string front() const {
-         return head ? head ->data : "";
+         return head ? head->data : "";
     }
 
     string back() const {
