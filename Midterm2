@@ -159,5 +159,10 @@ int main() {
             line.push_back(customer);
             names.pop_front();
         }
+
+        cout << "   Resulting line:" << endl;
+        line.print();
+    }
+
     return 0;
 }
