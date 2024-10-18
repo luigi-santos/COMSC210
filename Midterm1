@@ -201,6 +201,16 @@ public:
         }
         cout << endl; // endline
     }
+
+    void every_other_element() { // function that outputs every other element
+        Node* current = head // begin at the head of list
+        if (!current) {
+            cout << "List is empty." << endl; // if list is empty print message
+            return; // exits function
+        }
+
+        whie (current) {
+            cout << current->data << " "; // while there are nodes print the current node's data
 };
 
 int main() { // driver program
