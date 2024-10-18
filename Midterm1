@@ -10,47 +10,47 @@ private:
         Node* prev; // pointer for previous node in the list
         Node* next; // pointer for the next node in the list
         Node(int val, Node* p = nullptr, Node* n = nullptr) { // constructor that initializes value for node and possible previous and/or next pointers
-            data = val; 
-            prev = p;
-            next = n;
+            data = val; // sets data value to the value
+            prev = p; // sets previous pointer to nullptr
+            next = n; // sets next pointer to nullputr
         }
     };
 
-    Node* head;
-    Node* tail;
+    Node* head; // pointer for the first node
+    Node* tail; // pointer to the lat node
 
 public:
-    DoublyLinkedList() { head = nullptr; tail = nullptr; }
+    DoublyLinkedList() { head = nullptr; tail = nullptr; } // constructor for the class
 
-    void insert_after(int value, int position) {
-        if (position < 0) {
-            cout << "Position must be >= 0." << endl;
-            return;
+    void insert_after(int value, int position) { // function that inserts a new node with a value
+        if (position < 0) { // if statement is true
+            cout << "Position must be >= 0." << endl; // print statement
+            return; // exits function
         }
 
-        Node* newNode = new Node(value);
-        if (!head) {
-            head = tail = newNode;
-            return;
+        Node* newNode = new Node(value); // creates new node with the value
+        if (!head) { // if there is nothing
+            head = tail = newNode; // make head and tail set to the new node
+            return; // exits function
         }
 
-        Node* temp = head;
-        for (int i = 0; i < position && temp; ++i)
-            temp = temp->next;
+        Node* temp = head; // begin at the head of the list
+        for (int i = 0; i < position && temp; ++i) // for every i in this position
+            temp = temp->next; // move to the next node
 
-        if (!temp) {
-            cout << "Position exceeds list size. Node not inserted.\n";
-            delete newNode;
-            return;
+        if (!temp) { // if position goes past list
+            cout << "Position exceeds list size. Node not inserted.\n"; // print statement
+            delete newNode; // deletes the new node
+            return; // exits function
         }
 
-        newNode->next = temp->next;
-        newNode->prev = temp;
+        newNode->next = temp->next; // put new node after temp node
+        newNode->prev = temp; // set new node's next to the temp node's next
         if (temp->next)
-            temp->next->prev = newNode;
+            temp->next->prev = newNode; // if the temp has a next node set its previous to the new node
         else
-            tail = newNode;
-        temp->next = newNode;
+            tail = newNode; // if it's the tail, make the tail the new node
+        temp->next = newNode; // set the temp's next to new node
     }
 
     void delete_val(int value) {
