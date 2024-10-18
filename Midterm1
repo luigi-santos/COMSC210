@@ -53,53 +53,53 @@ public:
         temp->next = newNode; // set the temp's next to new node
     }
 
-    void delete_val(int value) {
-        if (!head) return;
+    void delete_val(int value) { // function for deleting first node with a value
+        if (!head) return; // if list is empty exit function
 
-        Node* temp = head;
+        Node* temp = head; // begin at the head of list
         
         while (temp && temp->data != value)
-            temp = temp->next;
+            temp = temp->next; // when temp is not the value move to next node
 
-        if (!temp) return; 
+        if (!temp) return; // if theres no value exit function
 
         if (temp->prev)
-            temp->prev->next = temp->next;
+            temp->prev->next = temp->next; // if the node is not the first delete next node 
         else
-            head = temp->next; 
+            head = temp->next; // if it is the first node make it the head
 
         if (temp->next)
-            temp->next->prev = temp->prev;
+            temp->next->prev = temp->prev; // if temp is not the last node delete next node
         else
-            tail = temp->prev; 
+            tail = temp->prev; // if it is last node make it the tail
 
-        delete temp;
+        delete temp; // deletes node
     }
 
-    void delete_pos(int pos) {
+    void delete_pos(int pos) {  // function that deletes node at a position
         if (!head) {
-            cout << "List is empty." << endl;
-            return;
+            cout << "List is empty." << endl; // if list is empty print message
+            return; // exit function
         }
     
-        if (pos == 1) {
-            pop_front();
-            return;
+        if (pos == 1) { 
+            pop_front(); // if the first node is being deleted, call pop_front()
+            return; // exit function
         }
     
-        Node* temp = head;
+        Node* temp = head; // begin at the head of list
     
-        for (int i = 1; i < pos; i++){
+        for (int i = 1; i < pos; i++){ // for every i in this position
             if (!temp) {
-                cout << "Position doesn't exist." << endl;
-                return;
+                cout << "Position doesn't exist." << endl; // if the position goes past list size print message
+                return; // exit function
             }
             else
-                temp = temp->next;
+                temp = temp->next; // if not move on to next node
         }
-        if (!temp) {
-            cout << "Position doesn't exist." << endl;
-            return;
+        if (!temp) { 
+            cout << "Position doesn't exist." << endl; // if the position doesn't exist print message
+            return; // print message
         }
     
         if (!temp->next) {
