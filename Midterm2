@@ -111,7 +111,17 @@ DoublyLinkedList load_names(const string& filename) {
 }
 
 int main() {
-    cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
+    srand(static_cast<unsigned int>(time(0)));
+    DoublyLinkedList names = load_names(names.txt);
+    DoublyLinkedList line;
+
+    cout << "Store Opens: " << endl;
+    for (int i = 0; i < 5 && !names.is_empty(); ++i) {
+        string customer = names.front();
+        line.push_back(customer);
+        cout << "   " << customer << " joined the list << endl;
+        names.pop_front();
+    }
 
     
     return 0;
