@@ -5,6 +5,19 @@
 
 using namespace std;
 
+using VillagerData = tuple<int, string, string>;
+
+void printVillagers(const map<string, VillagerData>& villagers) {
+  cout << "\nVillager details:\n";
+  for (const auto& pair : villagers) {
+      const string& name = pair.first;
+      const auto& [friendship, species, catchphrase] = pair.second;
+      cout << name << " [" << friendship << ", " << species << ", " << catchphrase << "]" << endl;
+  }
+}
+
+
+
 int main() {
 
   // declarations
