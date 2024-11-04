@@ -16,7 +16,7 @@ void printVillagers(const map<string, VillagerData>& villagers) {
   }
 }
 
-void add Villager (map<string, VillagerData>& villagers) {
+void addVillager (map<string, VillagerData>& villagers) {
   string name, species, catchphrase;
   int friendship;
 
@@ -32,6 +32,18 @@ void add Villager (map<string, VillagerData>& villagers) {
 
   villager[name] = make_tuple(friendship, species, catchphrase);
   cout << name << " added." << endl;
+}
+
+void deleteVillager (map<string, VillagerData>& villagers) {
+  string name;
+  cout << "\Enter villager name to delete: ";
+  cin >> name;
+
+  if (villager.erase(name)) {
+    cout << name << " deleted." << endl;
+  } else {
+    cout << name << " not found." << endl;
+  }
 }
 
 
