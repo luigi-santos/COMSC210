@@ -76,6 +76,20 @@ void decreaseFriendship(map<string, VillagerData>& villagers) {
   }
 }
 
+void searchVillager(map<string, VillagerData>& villagers) {
+  string name;
+  cout << "\nEnter villager name to search for: ";
+  cin >> name;
+
+  auto it = villagers.find(name);
+  if (it != villagers.end()) {
+    const auto& [friendship, species, catchphrase] = it->second;
+    cout << "Found " << name << ": [" << friendship << ", " << species << ", " << catchphrase << "]" << endl;
+  } else {
+    cout << name << " not found." << endl;
+  }
+}
+
 int main() {
 
   // declarations
