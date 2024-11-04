@@ -20,7 +20,7 @@ void addVillager(map<string, VillagerData>& villagers) {
   string name, species, catchphrase;
   int friendship;
 
-  cout << "\nVillager name: "
+  cout << "\nVillager name: ";
   cin >> name;
   cout << "Friendship le vel (0-10): ";
   cin >> friendship;
@@ -30,16 +30,16 @@ void addVillager(map<string, VillagerData>& villagers) {
   cin.ignore();
   getline(cin, catchphrase);
 
-  villager[name] = make_tuple(friendship, species, catchphrase);
+  villagers[name] = make_tuple(friendship, species, catchphrase);
   cout << name << " added." << endl;
 }
 
 void deleteVillager(map<string, VillagerData>& villagers) {
   string name;
-  cout << "\Enter villager name to delete: ";
+  cout << "\nEnter villager name to delete: ";
   cin >> name;
 
-  if (villager.erase(name)) {
+  if (villagers.erase(name)) {
     cout << name << " deleted." << endl;
   } else {
     cout << name << " not found." << endl;
@@ -93,7 +93,7 @@ void searchVillager(map<string, VillagerData>& villagers) {
 int main() {
 
   // declarations
-  map<string, vector<string>> villagerColors;
+  map<string, VillagerData> villagers;
 
   int choice;
   do {
@@ -130,7 +130,7 @@ int main() {
         cout << "Error. Try again.";
     }
 
-    printVillagers(villager);
+    printVillagers(villagers);
 
   } while (choice != 6);
 
