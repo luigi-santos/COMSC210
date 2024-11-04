@@ -16,6 +16,24 @@ void printVillagers(const map<string, VillagerData>& villagers) {
   }
 }
 
+void add Villager (map<string, VillagerData>& villagers) {
+  string name, species, catchphrase;
+  int friendship;
+
+  cout << "\nVillager name: "
+  cin >> name;
+  cout << "Friendship le vel (0-10): ";
+  cin >> friendship;
+  cout << "Species: ";
+  cin >> species;
+  cout << "Catchphrase: ";
+  cin.ignore();
+  getline(cin, catchphrase);
+
+  villager[name] = make_tuple(friendship, species, catchphrase);
+  cout << name << " added." << endl;
+}
+
 
 
 int main() {
