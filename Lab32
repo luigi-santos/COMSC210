@@ -32,7 +32,7 @@ int main() {
     int randomEvent = rand() % 100;
 
     if (randomEvent < 55) {
-      Car departingCar = tollQue.front();
+      Car departingCar = tollQueue.front();
       tollQueue.pop_front();
       cout << endl;
       cout << "Time: " << timeStep << " Operation: Car paid: ";
@@ -44,3 +44,19 @@ int main() {
       cout << "Time: " << timeStep << " Operation: Joined lane: ";
       newCar.print();
     }
+
+    cout << "Queue: " << endl;
+    if (tollQueue.()) {
+      cout << "   Empty" << endl;
+    } else {
+      for (const auto& car : tollQueue) {
+        cout << "   ";
+        car.print();
+      }
+    }
+  }
+
+  cout << endl;
+  cout << "Simulation complete" << endl;
+  return 0;
+}
