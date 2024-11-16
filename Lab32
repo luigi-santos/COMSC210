@@ -13,10 +13,25 @@ int main() {
   deque<Car> tollQueue;
 
   for (int i = 0; i < INITIAL_QUEUE_SIZE; ++i) {
-    tollQueue.pish_back(Car());
+    tollQueue.push_back(Car());
   }
 
   cout << "Initial queue: " << endl;
   for (const auto& car : tollQueue) {
     car.print();
   }
+
+  int timeStep = 0;
+
+  while (!tollQueue.empty()) {
+    ++timeStep;
+
+    int randomEvent = rand() % 100;
+
+    if (randomEvent < 55) {
+      Car departingCar = tollQue.front();
+      tollQueue.pop_front();
+      cout << endl;
+      cout << "Time: " << timeStep << " Operation: Car paid: ";
+      departingCar.print();
+    }
