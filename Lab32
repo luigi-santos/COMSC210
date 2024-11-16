@@ -20,7 +20,7 @@ int main() {
   }
 
   cout << "Initial queue: " << endl;
-  for (const auto& car : tollQueue) {
+  for (auto& car : tollQueue) {
     car.print();
   }
 
@@ -49,7 +49,7 @@ int main() {
     if (tollQueue.empty()) {
       cout << "   Empty" << endl;
     } else {
-      for (const auto& car : tollQueue) {
+      for (auto& car : tollQueue) {
         cout << "   ";
         car.print();
       }
