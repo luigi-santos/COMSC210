@@ -1,0 +1,22 @@
+// Lab 32 || Luigi Santos
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include "Car.h"
+
+using namespace std;
+
+int main() {
+  srand(static_cast<unsigned int>(time(nullptr)));
+
+  deque<Car> tollQueue;
+
+  for (int i = 0; i < INITIAL_QUEUE_SIZE; ++i) {
+    tollQueue.pish_back(Car());
+  }
+
+  cout << "Initial queue: " << endl;
+  for (const auto& car : tollQueue) {
+    car.print();
+  }
