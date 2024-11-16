@@ -1,14 +1,14 @@
 // Lab 32 || Luigi Santos
 
 #include <iostream>
-#include <deque
+#include <deque>
 #include <cstdlib>
 #include <ctime>
 #include "Car.h"
 
 using namespace std;
 
-cont int INITIAL_QUEUE_SIZE = 2;
+const int INITIAL_QUEUE_SIZE = 2;
 
 int main() {
   srand(static_cast<unsigned int>(time(nullptr)));
@@ -46,7 +46,7 @@ int main() {
     }
 
     cout << "Queue: " << endl;
-    if (tollQueue.()) {
+    if (tollQueue.empty()) {
       cout << "   Empty" << endl;
     } else {
       for (const auto& car : tollQueue) {
