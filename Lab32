@@ -1,11 +1,14 @@
 // Lab 32 || Luigi Santos
 
 #include <iostream>
+#include <deque
 #include <cstdlib>
 #include <ctime>
 #include "Car.h"
 
 using namespace std;
+
+cont int INITIAL_QUEUE_SIZE = 2;
 
 int main() {
   srand(static_cast<unsigned int>(time(nullptr)));
@@ -34,4 +37,10 @@ int main() {
       cout << endl;
       cout << "Time: " << timeStep << " Operation: Car paid: ";
       departingCar.print();
+    } else {
+      Car newCar;
+      tollQueue.push_back(newCar);
+      cout << endl;
+      cout << "Time: " << timeStep << " Operation: Joined lane: ";
+      newCar.print();
     }
