@@ -53,19 +53,21 @@ int main() {
     for (int laneNum = 0; LaneNum < NUM_LANES;++ laneNum) {
       int randomEvent = rand() % 100;
 
-    if (randomEvent < 55) {
-      Car departingCar = tollQueue.front();
-      tollQueue.pop_front();
-      cout << endl;
-      cout << "Time: " << timeStep << " Operation: Car paid: ";
-      departingCar.print();
-    } else {
-      Car newCar;
-      tollQueue.push_back(newCar);
-      cout << endl;
-      cout << "Time: " << timeStep << " Operation: Joined lane: ";
-      newCar.print();
-    }
+      if (randomEvent < PAY_PROBABILITY && !lanes[laneNum].empty()) {
+        Car departingCar = lanes[laneNum].front();
+        lanes[laneNum].pop_front();
+        cout << endl;
+        cout << "Lane " << laneNum + 1 << "  paid: ";
+        departingCar.print();
+      } 
+      else if (randomEvent < PAY_PROBABILITY + JOIN_PROBABILITY) {
+        Car newCar;
+        Lanes[laneNum].push_back(newCar);
+        cout << endl;
+        cout << "Lane " << laneNum + 1 << " joined:  ";
+        newCar.print();
+      }
+    
 
     cout << "Queue: " << endl;
     if (tollQueue.empty()) {
