@@ -1,0 +1,62 @@
+// Lab 32 || Luigi Santos
+
+#include <iostream>
+#include <deque>
+#include <cstdlib>
+#include <ctime>
+#include "Car.h"
+
+using namespace std;
+
+const int INITIAL_QUEUE_SIZE = 2;
+
+int main() {
+  srand(static_cast<unsigned int>(time(nullptr)));
+
+  deque<Car> tollQueue;
+
+  for (int i = 0; i < INITIAL_QUEUE_SIZE; ++i) {
+    tollQueue.push_back(Car());
+  }
+
+  cout << "Initial queue: " << endl;
+  for (auto& car : tollQueue) {
+    car.print();
+  }
+
+  int timeStep = 0;
+
+  while (!tollQueue.empty()) {
+    ++timeStep;
+
+    int randomEvent = rand() % 100;
+
+    if (randomEvent < 55) {
+      Car departingCar = tollQueue.front();
+      tollQueue.pop_front();
+      cout << endl;
+      cout << "Time: " << timeStep << " Operation: Car paid: ";
+      departingCar.print();
+    } else {
+      Car newCar;
+      tollQueue.push_back(newCar);
+      cout << endl;
+      cout << "Time: " << timeStep << " Operation: Joined lane: ";
+      newCar.print();
+    }
+
+    cout << "Queue: " << endl;
+    if (tollQueue.empty()) {
+      cout << "   Empty" << endl;
+    } else {
+      for (auto& car : tollQueue) {
+        cout << "   ";
+        car.print();
+      }
+    }
+  }
+
+  cout << endl;
+  cout << "Simulation complete" << endl;
+  return 0;
+}
