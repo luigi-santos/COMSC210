@@ -1,14 +1,30 @@
-// Lab 32 || Luigi Santos
+// Lab 33 || Luigi Santos
 
 #include <iostream>
 #include <deque>
 #include <cstdlib>
 #include <ctime>
+#include <vector>
 #include "Car.h"
 
 using namespace std;
 
-const int INITIAL_QUEUE_SIZE = 2;
+const int NUM_LANES = 4;
+const int INITIAL_QUEUE_SIZE = 1;
+const int INITIAL_QUEUE_SIZE_MAX = 3;
+const int SIMULATION_STEPS = 20;
+const int PAY_PROBABILITY = 46;
+const int JOIN_PROBABILITY = 39;
+const int SHIFT_PROBABILITY = 15;
+
+int getRandomLane(int excludeLane) {
+  int lane;
+  do {
+    lane = rand() % NUM_LANES;
+  } while (lane == excludelane);
+  return lane;
+}
+
 
 int main() {
   srand(static_cast<unsigned int>(time(nullptr)));
