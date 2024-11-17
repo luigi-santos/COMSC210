@@ -29,10 +29,13 @@ int getRandomLane(int excludeLane) {
 int main() {
   srand(static_cast<unsigned int>(time(nullptr)));
 
-  deque<Car> tollQueue;
+  vector<deque<Car>> lanes(NUM_LANES);
 
-  for (int i = 0; i < INITIAL_QUEUE_SIZE; ++i) {
-    tollQueue.push_back(Car());
+  for (int i = 0; i < NUM_LANES; ++i) {
+    int initialCars = rand() % (INITIAL_QUEUE_SIZE_MAX - INITIAL_QUEUE_SIZE_MIN + 1) + INITIAL_QUEUE_SIZE_MIN;
+    for (int j = 0; j < initialCars; ++j) {
+      lanes[i].push_back(Car());
+    }
   }
 
   cout << "Initial queue: " << endl;
