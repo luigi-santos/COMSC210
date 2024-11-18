@@ -72,19 +72,21 @@ int main() {
         lanes[laneNum].pop_back();
         int newLane = getRandomLane(laneNum);
         lanes[newLane].push_back(rearCar);
-        cout << "Lane " << laneNum + 1 << " shifted: ";
+        cout << "Lane " << laneNum + 1 << " switched: ";
         rearCar.print();
       }
     }
 
-    cout << "Queue: " << endl;
-    if (tollQueue.empty()) {
-      cout << "   Empty" << endl;
-    } else {
-      for (auto& car : tollQueue) {
-        cout << "   ";
-        car.print();
+    for (int i = 0; i < NUM_LANES; ++i) {
+      cout << "Lane " << i + 1 << "Queue: " << endl;
+      if (lanes[i].empty()) {
+        cout << "   Empty" << endl;
+      } else {
+        for (auto& car : lanes[i]) {
+          car.print();
+        }
       }
+      cout << endl;
     }
   }
 
