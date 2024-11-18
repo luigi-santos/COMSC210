@@ -67,7 +67,15 @@ int main() {
         cout << "Lane " << laneNum + 1 << " joined:  ";
         newCar.print();
       }
-    
+      else if (randomEvent < PAY_PROBABILITY + JOIN_PROBABILITY + SHIFT_PROBABILITY && !lanes[laneNum].empty()) {
+        Car rearCar = lanes[laneNum].back();
+        lanes[laneNum].pop_back();
+        int newLane = getRandomLane(laneNum);
+        lanes[newLane].push_back(rearCar);
+        cout << "Lane " << laneNum + 1 << " shifted: ";
+        rearCar.print();
+      }
+    }
 
     cout << "Queue: " << endl;
     if (tollQueue.empty()) {
