@@ -10,7 +10,7 @@
 using namespace std;
 
 const int NUM_LANES = 4;
-const int INITIAL_QUEUE_SIZE = 1;
+const int INITIAL_QUEUE_SIZE_MIN = 1;
 const int INITIAL_QUEUE_SIZE_MAX = 3;
 const int SIMULATION_STEPS = 20;
 const int PAY_PROBABILITY = 46;
@@ -21,7 +21,7 @@ int getRandomLane(int excludeLane) {
   int lane;
   do {
     lane = rand() % NUM_LANES;
-  } while (lane == excludelane);
+  } while (lane == excludeLane);
   return lane;
 }
 
@@ -50,7 +50,7 @@ int main() {
     cout << endl;
     cout << "Time: " << timeStep << endl;
 
-    for (int laneNum = 0; LaneNum < NUM_LANES;++ laneNum) {
+    for (int laneNum = 0; laneNum < NUM_LANES;++ laneNum) {
       int randomEvent = rand() % 100;
 
       if (randomEvent < PAY_PROBABILITY && !lanes[laneNum].empty()) {
@@ -62,7 +62,7 @@ int main() {
       } 
       else if (randomEvent < PAY_PROBABILITY + JOIN_PROBABILITY) {
         Car newCar;
-        Lanes[laneNum].push_back(newCar);
+        lanes[laneNum].push_back(newCar);
         cout << endl;
         cout << "Lane " << laneNum + 1 << " joined:  ";
         newCar.print();
